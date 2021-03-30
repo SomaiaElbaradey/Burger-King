@@ -1,0 +1,41 @@
+{
+  "profile":{
+    "name":"Ahmed Zaghloul",
+    "title":"Developer"
+  },
+    "types": [
+        { "id": 0, "name": "All" },
+        { "id": 1, "name": "Burger" },
+        { "id": 2, "name": "Fries" },
+        { "id": 3, "name": "Cola" }
+      ],
+      "products": [
+        { "id": 1, "type": 1, "name": "Burger", "count": 0, "price": 30, "inCart": false },
+        { "id": 2, "type": 2, "name": "Fries", "count": 0, "price": 20, "inCart": false },
+        { "id": 3, "type": 3, "name": "Cola", "count": 0, "price": 10, "inCart": false },
+        {
+          "id": 4,
+          "type": 1,
+          "name": "Large Burger",
+          "count": 0,
+          "price": 40,
+          "inCart": false
+        },
+        {
+          "id": 5,
+          "type": 2,
+          "name": "Large Fries",
+          "count": 0,
+          "price": 25,
+          "inCart": false
+        },
+        {
+          "id": 6,
+          "type": 3,
+          "name": "Large Cola",
+          "count": 0,
+          "price": 15,
+          "inCart": false
+        }
+      ]
+}
