@@ -5,30 +5,40 @@ import CartIcon from "../cart/carticon";
 import Cart from "../cart/cart";
 
 import "./menuStyle.css";
+import Navbar from "../navbar";
 
-const Menu = (props) => {
+const Menu = () => {
   const [posts, setPosts] = useState(false);
   const [postsFetched, setpostsFetched] = useState(false);
+  const [allProducts, setallProducts] = useState(false);
+
+  const getPosts = async function () {
+    if (!postsFetched) {
+      const { data } = await axios.get("http://localhost:8000/products");
+      setPosts(data);
+      setallProducts(data);
+      setpostsFetched(true);
+    }
+  };
 
   useEffect(() => {
-    const getProfile = async () => {
-      if (!postsFetched) {
-        const { data } = await axios.get("http://localhost:8000/products");
-        setPosts(data);
-        console.log(data);
-        console.log(posts);
-        setpostsFetched(true);
-      }
-    };
-    getProfile();
-  }, [posts]);
+    getPosts();
+  }, [allProducts]);
 
-  const handleClick = (product) => {
-    console.log(product);
+  const searching = async function (item) {
+    await getPosts();
+    if (item) {
+      let products = [...allProducts];
+      products = products.filter((product) => {
+        return product.name.toLocaleLowerCase().includes(item);
+      });
+      setPosts(products);
+    }
   };
 
   return (
-    <div style={{backgroundColor: '#0d0c0a'}}>
+    <div style={{ backgroundColor: "#0d0c0a" }}>
+      <Navbar searching={searching}/>
       <div className="row container">
         {/* <Filter
               types={this.props.types}
@@ -54,19 +64,14 @@ const Menu = (props) => {
         <div className="row d-flex justify-content-center">
           {postsFetched ? (
             posts.map((product) => (
-              <div className="card col-lg-3 col-md-4">
+              <div key={product.id} className="card col-lg-3 col-md-4">
                 <div className="card-icon-div">
                   <img src={product.image} className="card-img m-2" />
                 </div>
                 <div className="card-body">
                   <h5 className="card-title">{product.name}</h5>
                   <p className="card-price">{product.price}$</p>
-                  <CartIcon
-                    onClick={(event) => {
-                      console.log(product);
-                    }}
-                    product={product}
-                  />
+                  <CartIcon product={product}/>
                 </div>
               </div>
             ))
