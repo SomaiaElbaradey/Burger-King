@@ -1,0 +1,21 @@
+.fas {
+  color: rgba(255, 255, 255, 0.904);
+}
+
+.cart-btn {
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(to bottom right, #f5b942, #f8951c);
+  padding: 10px;
+  width: 150px;
+  height: 45px;
+  font-family: bebe;
+  font-size: 19px;
+}
+
+.cart-btn:hover {
+  transition: opacity 2s;
+  transition-timing-function: ease-in-out;
+  opacity: 0.9;
+  background: linear-gradient(to bottom right, #f8951c, #f5b942);
+}

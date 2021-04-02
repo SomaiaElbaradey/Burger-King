@@ -4,11 +4,9 @@ import axios from "axios";
 import CartIcon from "../cart/carticon";
 import Cart from "../cart/cart";
 
-import "./style.css";
+import "./menuStyle.css";
 
 const Menu = (props) => {
-  const [name, setName] = useState(false);
-  const [price, setPrice] = useState(false);
   const [posts, setPosts] = useState(false);
   const [postsFetched, setpostsFetched] = useState(false);
 
@@ -22,29 +20,26 @@ const Menu = (props) => {
         setpostsFetched(true);
       }
     };
-
     getProfile();
   }, [posts]);
 
   const handleClick = (product) => {
-    console.log(product)
-  }
-  
+    console.log(product);
+  };
+
   return (
-    <>
+    <div style={{backgroundColor: '#0d0c0a'}}>
       <div className="row container">
-        <div className="col-5">
-          <div className="card m-4">ok</div>
-          {/* <Filter
+        {/* <Filter
               types={this.props.types}
               activeFilter={this.props.activeFilter}
               onActiveFilterChange={this.props.onActiveFilterChange}
             /> */}
-        </div>
-        {/* <div className="col"> */}
+      </div>
+      {/* <div className="col"> */}
 
-        {/* Pagination */}
-        {/* {filteredProducts.length >= this.props.pageSize && (
+      {/* Pagination */}
+      {/* {filteredProducts.length >= this.props.pageSize && (
               <Pagination
                 pageSize={this.props.pageSize}
                 activePage={this.props.activePage}
@@ -52,29 +47,26 @@ const Menu = (props) => {
                 onActivePageChange={this.props.onActivePageChange}
               />
             )} */}
-        {/* </div> */}
-        {/* <Cart /> */}
-        <div className=" col m-4">
+      {/* </div> */}
+      {/* <Cart /> */}
+      {/* <div className=" col m-4"> */}
+      <div className="container cards">
+        <div className="row d-flex justify-content-center">
           {postsFetched ? (
-            posts.map((prdct) => (
-              <div className="card menuCard mb-3 text-center">
-                <div className="mt-2 d-flex flex-row ">
-                  <img
-                    src={prdct.image}
-                    className="card-img m-2"
-                  />
-                  <div className="d-flex flex-column">
-                    <h5 className="card-title mt-2">{prdct.name}</h5>
-                    <p>{prdct.price}$</p>
-                  </div>
-                  <div className="m-2">
-                    <CartIcon 
-                    onClick={event => {
-                      console.log(prdct)
-                      handleClick(prdct)
+            posts.map((product) => (
+              <div className="card col-lg-3 col-md-4">
+                <div className="card-icon-div">
+                  <img src={product.image} className="card-img m-2" />
+                </div>
+                <div className="card-body">
+                  <h5 className="card-title">{product.name}</h5>
+                  <p className="card-price">{product.price}$</p>
+                  <CartIcon
+                    onClick={(event) => {
+                      console.log(product);
                     }}
-                    product={prdct} />
-                  </div>
+                    product={product}
+                  />
                 </div>
               </div>
             ))
@@ -83,7 +75,7 @@ const Menu = (props) => {
           )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -4,6 +4,7 @@ import axios from "axios";
 
 import Menu from './components/menu/menu.jsx';
 import Navbar from './components/navbar.jsx';
+import Header from './components/header';
 
 class App extends Component {
 
@@ -11,6 +12,7 @@ class App extends Component {
     return (
       <>
       <Navbar/>
+      <Header/>
       <Menu/>
       </>
     );

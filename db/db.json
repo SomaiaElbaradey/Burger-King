@@ -10,35 +10,26 @@
         { "id": 3, "name": "Cola" }
       ],
       "products": [
-        { "id": 1, "type": 1, "name": "Burger", "count": 0, "price": 30, "inCart": false, "image":"https://freepngimg.com/thumb/burger/6-2-burger-png-image.png" },
-        { "id": 2, "type": 2, "name": "Fries", "count": 0, "price": 20, "inCart": false, "image":"https://freepngimg.com/thumb/burger/6-2-burger-png-image.png" },
-        { "id": 3, "type": 3, "name": "Cola", "count": 0, "price": 10, "inCart": false, "image":"https://freepngimg.com/thumb/burger/6-2-burger-png-image.png" },
-        {
-          "id": 4,
-          "type": 1,
-          "name": "Large Burger",
-          "count": 0,
-          "price": 40,
-          "inCart": false,
-          "image":"https://freepngimg.com/thumb/burger/6-2-burger-png-image.png"
-        },
-        {
-          "id": 5,
-          "type": 2,
-          "name": "Large Fries",
-          "count": 0,
-          "price": 25,
-          "inCart": false,
-          "image":"https://freepngimg.com/thumb/burger/6-2-burger-png-image.png"
-        },
-        {
-          "id": 6,
-          "type": 3,
-          "name": "Large Cola",
-          "count": 0,
-          "price": 15,
-          "inCart": false,
-          "image":"https://freepngimg.com/thumb/burger/6-2-burger-png-image.png"
-        }
+        { "id": 1, "type": 1, "name": "Classic Burger", "count": 0, "price": 12.99, "inCart": false, "image":"https://i.ibb.co/dMqyTsr/1.png" },
+        { "id": 2, "type": 1, "name": "Chicken Burger", "count": 0, "price": 9.99, "inCart": false, "image":"https://i.ibb.co/Smq1NSY/2.png" },
+        { "id": 3, "type": 1, "name": "BBQ Burger", "count": 0, "price": 11.99, "inCart": false, "image":"https://i.ibb.co/vLc3kPn/4.png" },
+        { "id": 4, "type": 1, "name": "Double Burger", "count": 0, "price": 20.99, "inCart": false, "image":"https://i.ibb.co/85b06sh/3.png" },
+        { "id": 5, "type": 1, "name": "Bacon Burger", "count": 0, "price": 19.99, "inCart": false, "image":"https://freepngimg.com/thumb/burger/6-2-burger-png-image.png" },
+        { "id": 6, "type": 1, "name": "Double Whopper", "count": 0, "price": 15.99, "inCart": false, "image":"https://i.ibb.co/VW98756/8.png" },
+        { "id": 7, "type": 1, "name": "Chili Cheese", "count": 0, "price": 16.99, "inCart": false, "image":"https://i.ibb.co/KXRKfpD/9.png" },
+        { "id": 8, "type": 1, "name": "Chicken Royale", "count": 0, "price": 21.99, "inCart": false, "image":"https://i.ibb.co/X3Bn4nP/10.png" },
+        { "id": 9, "type": 1, "name": "Chicken Tower", "count": 0, "price": 19.99, "inCart": false, "image":"https://i.ibb.co/PGdcrnW/11.png" },
+
+        { "id": 10, "type": 3, "name": "Cola", "count": 0, "price": 5.99, "inCart": false, "image":"https://i.ibb.co/jkxHZdX/5.png" },
+        { "id": 11, "type": 3, "name": "Apple", "count": 0, "price": 7.99, "inCart": false, "image":"https://i.ibb.co/jW7xGJt/12.png" },
+        { "id": 12, "type": 3, "name": "Orange", "count": 0, "price": 7.99, "inCart": false, "image":"https://i.ibb.co/0V10w5V/14.png" },
+        { "id": 13, "type": 3, "name": "Sprite", "count": 0, "price": 7.99, "inCart": false, "image":"https://i.ibb.co/CzhKFy1/15.png" },
+        { "id": 14, "type": 3, "name": "Large Cola", "count": 0, "price": 9.99, "inCart": false, "image":"https://i.ibb.co/PGwbYTm/13.png" },
+       
+        { "id": 15, "type": 2, "name": "French Fries", "count": 0, "price": 6.99, "inCart": false, "image":"https://i.ibb.co/gDBxP7Y/7.png" },
+        { "id": 16, "type": 2, "name": "Onion Rings", "count": 0, "price": 7.99, "inCart": false, "image":"https://i.ibb.co/YNvdqQ1/19.png" },
+        { "id": 17, "type": 2, "name": "Twister Fries", "count": 0, "price": 5.99, "inCart": false, "image":"https://i.ibb.co/NNtL9hy/16.png" },
+        { "id": 17, "type": 2, "name": "Large Fries", "count": 0, "price": 9.99, "inCart": false, "image":"https://i.ibb.co/BsjGLmP/20.png" }
+
       ]
 }
