@@ -1,44 +1,61 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-import CartIcon from "../cart/carticon";
-import Cart from "../cart/cart";
-
 import "./menuStyle.css";
 import Navbar from "../navbar";
+import Loading from "../loading";
+import CartIcon from "../cart/carticon";
+import Cart from "../cart/cart";
 
 const Menu = () => {
   const [posts, setPosts] = useState(false);
   const [postsFetched, setpostsFetched] = useState(false);
-  const [allProducts, setallProducts] = useState(false);
+  const [allProducts, setallProducts] = useState([]);
+  const [isSearching, setSearching] = useState(false);
+  const [count, setCount] = useState(0);
 
   const getPosts = async function () {
-    if (!postsFetched) {
+    // if (!postsFetched) {
       const { data } = await axios.get("http://localhost:8000/products");
       setPosts(data);
       setallProducts(data);
       setpostsFetched(true);
-    }
+    // }
+  };
+
+  const getCount = () => {
+    const products = [...allProducts];
+    const filteredProducts = products.filter((p) => p.inCart == true);
+    setCount(filteredProducts.length);
   };
 
   useEffect(() => {
+    console.log("use effect");
     getPosts();
+    getCount();
   }, [allProducts]);
 
+  useEffect(() => {
+    console.log("e0");
+    getPosts();
+  }, []);
+
   const searching = async function (item) {
-    await getPosts();
     if (item) {
       let products = [...allProducts];
       products = products.filter((product) => {
         return product.name.toLocaleLowerCase().includes(item);
       });
       setPosts(products);
+      setSearching(true);
     }
   };
 
+  console.log("reender0");
+
   return (
     <div style={{ backgroundColor: "#0d0c0a" }}>
-      <Navbar searching={searching}/>
+      <Navbar count={count} searching={searching} />
       <div className="row container">
         {/* <Filter
               types={this.props.types}
@@ -71,12 +88,14 @@ const Menu = () => {
                 <div className="card-body">
                   <h5 className="card-title">{product.name}</h5>
                   <p className="card-price">{product.price}$</p>
-                  <CartIcon product={product}/>
+                  <CartIcon product={product} allProducts={allProducts} />
                 </div>
               </div>
             ))
           ) : (
-            <div>loader</div>
+            <div>
+              <Loading />
+            </div>
           )}
         </div>
       </div>

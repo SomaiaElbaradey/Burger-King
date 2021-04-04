@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./styles.css";
 
-export default function Navbar({ searching }) {
+export default function Navbar({ searching, count }) {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
   const [item, setItem] = useState("");
-  const [count, setCount] = useState(0);
 
   const navStyle = {
     backgroundColor: "#0d0c0a",
