@@ -4,13 +4,19 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./cartStyle.css";
 
-const CartIcon = ({ product }) => {
+const CartIcon = ({ product, getPosts }) => {
   const editPosts = async function (product) {
-    await axios.patch(`http://localhost:8000/products/${product.id}`, {
-      inCart: true,
-      count: 1
-    });
-    toast.success("Product Added to cart successfully!");
+    if (!product.inCart) {
+      await axios.patch(`http://localhost:8000/products/${product.id}`, {
+        inCart: true,
+        count: 1,
+      });
+      await getPosts()
+      toast.success("Product Added to cart successfully!");
+    } else{
+      console.log('already')
+      toast("Product Already in cart!")
+    };
   };
 
   const addToCart = () => {

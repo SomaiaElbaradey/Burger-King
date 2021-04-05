@@ -13,12 +13,13 @@ export default function Navbar({ searching, count }) {
     fontFamily: "bebe",
   };
 
-  let handleSeach = (e) => {
+  let handleSearch = (e) => {
     setItem(e.target.value);
     searching(item.toLocaleLowerCase());
     console.log(item.toLocaleLowerCase());
   };
 
+  console.log(count, "nav");
   return (
     <nav
       style={navStyle}
@@ -52,7 +53,7 @@ export default function Navbar({ searching, count }) {
             placeholder="Search"
             aria-label="Search"
             value={item}
-            onChange={handleSeach}
+            onChange={handleSearch}
           />
         </a>
       </div>

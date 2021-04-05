@@ -62,9 +62,9 @@
       "id": 5,
       "type": 1,
       "name": "Bacon Burger",
-      "count": 0,
+      "count": 1,
       "price": 19.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://freepngimg.com/thumb/burger/6-2-burger-png-image.png"
     },
     {
@@ -80,18 +80,18 @@
       "id": 7,
       "type": 1,
       "name": "Chili Cheese",
-      "count": 0,
+      "count": 1,
       "price": 16.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/KXRKfpD/9.png"
     },
     {
       "id": 8,
       "type": 1,
       "name": "Chicken Royale",
-      "count": 0,
+      "count": 1,
       "price": 21.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/X3Bn4nP/10.png"
     },
     {
@@ -100,16 +100,16 @@
       "name": "Chicken Tower",
       "count": 1,
       "price": 19.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/PGdcrnW/11.png"
     },
     {
       "id": 10,
       "type": 3,
       "name": "Cola",
-      "count": 0,
+      "count": 1,
       "price": 5.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/jkxHZdX/5.png"
     },
     {
@@ -125,7 +125,7 @@
       "id": 12,
       "type": 3,
       "name": "Orange",
-      "count": 0,
+      "count": 1,
       "price": 7.99,
       "inCart": false,
       "image": "https://i.ibb.co/0V10w5V/14.png"
@@ -152,7 +152,7 @@
       "id": 15,
       "type": 2,
       "name": "French Fries",
-      "count": 0,
+      "count": 1,
       "price": 6.99,
       "inCart": false,
       "image": "https://i.ibb.co/gDBxP7Y/7.png"
@@ -170,7 +170,7 @@
       "id": 17,
       "type": 2,
       "name": "Twister Fries",
-      "count": 0,
+      "count": 1,
       "price": 5.99,
       "inCart": false,
       "image": "https://i.ibb.co/NNtL9hy/16.png"
@@ -179,7 +179,7 @@
       "id": 18,
       "type": 2,
       "name": "Large Fries",
-      "count": 0,
+      "count": 1,
       "price": 9.99,
       "inCart": false,
       "image": "https://i.ibb.co/BsjGLmP/20.png"

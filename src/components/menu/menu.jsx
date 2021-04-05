@@ -6,39 +6,50 @@ import Navbar from "../navbar";
 import Loading from "../loading";
 import CartIcon from "../cart/carticon";
 import Cart from "../cart/cart";
+import { toast } from "react-toastify";
 
 const Menu = () => {
-  const [posts, setPosts] = useState(false);
-  const [postsFetched, setpostsFetched] = useState(false);
-  const [allProducts, setallProducts] = useState([]);
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [isSearching, setSearching] = useState(false);
-  const [count, setCount] = useState(0);
-
+  const filteredProducts = posts.filter((p) => p.inCart == true);
+  const count = filteredProducts.length;
   const getPosts = async function () {
-    // if (!postsFetched) {
-      const { data } = await axios.get("http://localhost:8000/products");
-      setPosts(data);
-      setallProducts(data);
-      setpostsFetched(true);
-    // }
+    console.log('getProudcts')
+    setIsLoading(true);
+
+    axios
+      .get("http://localhost:8000/products")
+      .then((response) => {
+        console.log(response.data, "response.data");
+        setPosts(response.data);
+        setIsLoading(false);
+      })
+      .catch((err) => console.log(err, "err"));
+  };
+  const refetchProdcts = async function () {
+    toast("Refreshing Data!")
+    axios
+      .get("http://localhost:8000/products")
+      .then((response) => {
+        console.log(response.data, "response.data");
+        setPosts(response.data);
+      })
+      .catch((err) => console.log(err, "err"));
   };
 
-  const getCount = () => {
-    const products = [...allProducts];
-    const filteredProducts = products.filter((p) => p.inCart == true);
-    setCount(filteredProducts.length);
-  };
-
-  useEffect(() => {
-    console.log("use effect");
-    getPosts();
-    getCount();
-  }, [allProducts]);
+  // useEffect(() => {
+  //   setCount((count) => {
+  //     count++;
+  //   });
+  // }, [count]);
 
   useEffect(() => {
     console.log("e0");
     getPosts();
   }, []);
+
+  console.log(count, "menue");
 
   const searching = async function (item) {
     if (item) {
@@ -47,11 +58,10 @@ const Menu = () => {
         return product.name.toLocaleLowerCase().includes(item);
       });
       setPosts(products);
-      setSearching(true);
     }
   };
 
-  console.log("reender0");
+  console.log("count");
 
   return (
     <div style={{ backgroundColor: "#0d0c0a" }}>
@@ -79,7 +89,7 @@ const Menu = () => {
       {/* <div className=" col m-4"> */}
       <div className="container cards">
         <div className="row d-flex justify-content-center">
-          {postsFetched ? (
+          {!isLoading ? (
             posts.map((product) => (
               <div key={product.id} className="card col-lg-3 col-md-4">
                 <div className="card-icon-div">
@@ -88,7 +98,7 @@ const Menu = () => {
                 <div className="card-body">
                   <h5 className="card-title">{product.name}</h5>
                   <p className="card-price">{product.price}$</p>
-                  <CartIcon product={product} allProducts={allProducts} />
+                  <CartIcon product={product} getPosts={refetchProdcts} />
                 </div>
               </div>
             ))
