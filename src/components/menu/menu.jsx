@@ -52,13 +52,13 @@ const Menu = () => {
   console.log(count, "menue");
 
   const searching = async function (item) {
-    if (item) {
-      let products = [...allProducts];
-      products = products.filter((product) => {
-        return product.name.toLocaleLowerCase().includes(item);
-      });
-      setPosts(products);
-    }
+    // if (item) {
+    //   let products = [...allProducts];
+    //   products = products.filter((product) => {
+    //     return product.name.toLocaleLowerCase().includes(item);
+    //   });
+    //   setPosts(products);
+    // }
   };
 
   console.log("count");

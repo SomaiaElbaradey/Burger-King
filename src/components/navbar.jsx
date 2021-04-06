@@ -13,22 +13,27 @@ export default function Navbar({ searching, count }) {
     fontFamily: "bebe",
   };
 
+  const btnStyle = {
+    backgroundColor: "#fff9",
+      color: "black",
+    fontFamily: "bebe",
+  };
+
   let handleSearch = (e) => {
     setItem(e.target.value);
     searching(item.toLocaleLowerCase());
     console.log(item.toLocaleLowerCase());
   };
 
-  console.log(count, "nav");
   return (
+    <>
     <nav
       style={navStyle}
-      className="navbar navbar-expand-lg justify-content-between fixed-top text-center"
+      className="navbar navbar-expand-lg justify-content-between fixed-top"
     >
-      <a className="navbar-brand promotion" href="/">
-        Promotions
-      </a>
+      <a className="navbar-brand promotion">Promotions</a>
       <button
+        style={btnStyle}
         className="custom-toggler navbar-toggler"
         type="button"
         data-toggle="collapse"
@@ -36,7 +41,7 @@ export default function Navbar({ searching, count }) {
         aria-expanded={!isNavCollapsed ? true : false}
         onClick={handleNavCollapse}
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon">___</span>
       </button>
 
       <div
@@ -58,11 +63,13 @@ export default function Navbar({ searching, count }) {
         </a>
       </div>
 
-      <form className="form-inline cart-badge text-center">
-        <i className="fas fa-shopping-bag">
-          <span className="ml-2 badge badge-light">{count}</span>
-        </i>
-      </form>
+     <form className="form-inline cart-badge text-center">
+     <i className="fas fa-shopping-bag">
+       <span className="ml-2 badge badge-light">{count}</span>
+     </i>
+   </form>
     </nav>
+     
+   </>
   );
 }
