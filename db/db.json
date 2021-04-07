@@ -28,7 +28,7 @@
       "name": "Classic Burger",
       "count": 1,
       "price": 12.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/dMqyTsr/1.png"
     },
     {
@@ -37,7 +37,7 @@
       "name": "Chicken Burger",
       "count": 1,
       "price": 9.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/Smq1NSY/2.png"
     },
     {
@@ -46,7 +46,7 @@
       "name": "BBQ Burger",
       "count": 1,
       "price": 11.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/vLc3kPn/4.png"
     },
     {
@@ -55,7 +55,7 @@
       "name": "Double Burger",
       "count": 1,
       "price": 20.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/85b06sh/3.png"
     },
     {
@@ -100,7 +100,7 @@
       "name": "Chicken Tower",
       "count": 1,
       "price": 19.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/PGdcrnW/11.png"
     },
     {
@@ -109,16 +109,16 @@
       "name": "Cola",
       "count": 1,
       "price": 5.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/jkxHZdX/5.png"
     },
     {
       "id": 11,
       "type": 3,
       "name": "Apple",
-      "count": 0,
+      "count": 1,
       "price": 7.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/jW7xGJt/12.png"
     },
     {
@@ -134,7 +134,7 @@
       "id": 13,
       "type": 3,
       "name": "Sprite",
-      "count": 0,
+      "count": 1,
       "price": 7.99,
       "inCart": false,
       "image": "https://i.ibb.co/CzhKFy1/15.png"

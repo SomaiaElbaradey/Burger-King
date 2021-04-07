@@ -55,3 +55,19 @@
     margin-bottom: 1em;
   }
 }
+
+.MuiPaginationItem-root {
+  color: #b6b6b6!important;
+  background-color: #3534314d!important;
+}
+
+.Mui-selected {
+  color: #ffffff!important;
+  background-color: #363533!important;
+}
+
+.MuiPagination-ul{
+  width: 60%!important;
+  margin: 0 auto!important;
+  padding-bottom: 50px!important;
+}

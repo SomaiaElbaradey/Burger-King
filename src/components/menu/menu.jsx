@@ -1,55 +1,61 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Pagination } from "@material-ui/lab";
+import { makeStyles } from "@material-ui/styles";
 
 import "./menuStyle.css";
+
 import Navbar from "../navbar";
 import Loading from "../loading";
 import CartIcon from "../cart/carticon";
 import Cart from "../cart/cart";
-import { toast } from "react-toastify";
 
 const Menu = () => {
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isSearching, setSearching] = useState(false);
-  const filteredProducts = posts.filter((p) => p.inCart == true);
-  const count = filteredProducts.length;
-  const getPosts = async function () {
-    console.log('getProudcts')
-    setIsLoading(true);
+  const [postsPerPage, setPostsPerPage] = useState(3);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [allProducts, setAllProducts] = useState([]);
 
+  const filteredProducts = allProducts.filter((p) => p.inCart == true);
+  const count = filteredProducts.length;
+
+  const getPosts = async function () {
+    setIsLoading(true);
     axios
       .get("http://localhost:8000/products")
       .then((response) => {
-        console.log(response.data, "response.data");
-        setPosts(response.data);
+        setAllProducts(response.data);
+        let indexOfLastPost = 1 * postsPerPage;
+        let indexOfFirstPost = indexOfLastPost - postsPerPage;
+        setPosts(response.data.slice(indexOfFirstPost, indexOfLastPost));
         setIsLoading(false);
       })
       .catch((err) => console.log(err, "err"));
   };
+
   const refetchProdcts = async function () {
-    toast("Refreshing Data!")
     axios
       .get("http://localhost:8000/products")
       .then((response) => {
-        console.log(response.data, "response.data");
-        setPosts(response.data);
+        setAllProducts(response.data);
       })
       .catch((err) => console.log(err, "err"));
   };
 
-  // useEffect(() => {
-  //   setCount((count) => {
-  //     count++;
-  //   });
-  // }, [count]);
+  const paginate = async function () {
+    let indexOfLastPost = currentPage * postsPerPage;
+    let indexOfFirstPost = indexOfLastPost - postsPerPage;
+    await setPosts(allProducts.slice(indexOfFirstPost, indexOfLastPost));
+  };
 
   useEffect(() => {
-    console.log("e0");
+    paginate();
+  }, [currentPage]);
+
+  useEffect(() => {
     getPosts();
   }, []);
-
-  console.log(count, "menue");
 
   const searching = async function (item) {
     // if (item) {
@@ -61,8 +67,6 @@ const Menu = () => {
     // }
   };
 
-  console.log("count");
-
   return (
     <div style={{ backgroundColor: "#0d0c0a" }}>
       <Navbar count={count} searching={searching} />
@@ -73,20 +77,7 @@ const Menu = () => {
               onActiveFilterChange={this.props.onActiveFilterChange}
             /> */}
       </div>
-      {/* <div className="col"> */}
-
-      {/* Pagination */}
-      {/* {filteredProducts.length >= this.props.pageSize && (
-              <Pagination
-                pageSize={this.props.pageSize}
-                activePage={this.props.activePage}
-                count={filteredProducts.length}
-                onActivePageChange={this.props.onActivePageChange}
-              />
-            )} */}
-      {/* </div> */}
       {/* <Cart /> */}
-      {/* <div className=" col m-4"> */}
       <div className="container cards">
         <div className="row d-flex justify-content-center">
           {!isLoading ? (
@@ -108,6 +99,16 @@ const Menu = () => {
             </div>
           )}
         </div>
+      </div>
+      <div className="text-center">
+        <Pagination
+          //  defaultPage={1} siblingCount={0} boundaryCount={2}
+          variant="outlined"
+          count={Math.ceil(allProducts.length / postsPerPage)}
+          onChange={(event, page) => {
+            setCurrentPage(page);
+          }}
+        />
       </div>
     </div>
   );

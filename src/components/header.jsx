@@ -6,15 +6,15 @@ const Header = () => {
     backgroundColor: "#0d0c0a",
     padding: "10px",
     fontFamily: "bebe",
-    paddingTop:"100px"
+    paddingTop: "100px",
   };
 
   const headerTittle = {
-    fontSize: "60px"
+    fontSize: "60px",
   };
 
   const smallTittle = {
-    fontWeight: "500"
+    fontWeight: "500",
   };
 
   return (

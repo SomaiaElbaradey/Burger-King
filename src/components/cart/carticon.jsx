@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 import "./cartStyle.css";
 
@@ -11,12 +12,11 @@ const CartIcon = ({ product, getPosts }) => {
         inCart: true,
         count: 1,
       });
-      await getPosts()
+      await getPosts();
       toast.success("Product Added to cart successfully!");
-    } else{
-      console.log('already')
-      toast("Product Already in cart!")
-    };
+    } else {
+      toast("Product Already in cart!");
+    }
   };
 
   const addToCart = () => {

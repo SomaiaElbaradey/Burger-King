@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./styles.css";
 
 export default function Navbar({ searching, count }) {
+  
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -15,7 +16,7 @@ export default function Navbar({ searching, count }) {
 
   const btnStyle = {
     backgroundColor: "#fff9",
-      color: "black",
+    color: "black",
     fontFamily: "bebe",
   };
 
@@ -27,49 +28,48 @@ export default function Navbar({ searching, count }) {
 
   return (
     <>
-    <nav
-      style={navStyle}
-      className="navbar navbar-expand-lg justify-content-between fixed-top"
-    >
-      <a className="navbar-brand promotion">Promotions</a>
-      <button
-        style={btnStyle}
-        className="custom-toggler navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        aria-controls="navbarsExample09"
-        aria-expanded={!isNavCollapsed ? true : false}
-        onClick={handleNavCollapse}
+      <nav
+        style={navStyle}
+        className="navbar navbar-expand-lg justify-content-between fixed-top"
       >
-        <span className="navbar-toggler-icon">___</span>
-      </button>
+        <a className="navbar-brand promotion">Promotions</a>
+        <button
+          style={btnStyle}
+          className="custom-toggler navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          aria-controls="navbarsExample09"
+          aria-expanded={!isNavCollapsed ? true : false}
+          onClick={handleNavCollapse}
+        >
+          <span className="navbar-toggler-icon">___</span>
+        </button>
 
-      <div
-        className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
-        id="navbarsExample09"
-      >
-        <a className="nav-link">Menu</a>
-        <a className="nav-link">Snacks</a>
-        <a className="nav-link">Drinks</a>
-        <a>
-          <input
-            className="search"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-            value={item}
-            onChange={handleSearch}
-          />
-        </a>
-      </div>
+        <div
+          className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
+          id="navbarsExample09"
+        >
+          <a className="nav-link">Menu</a>
+          <a className="nav-link">Snacks</a>
+          <a className="nav-link">Drinks</a>
+          <a>
+            <input
+              className="search"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              value={item}
+              onChange={handleSearch}
+            />
+          </a>
+        </div>
 
-     <form className="form-inline cart-badge text-center">
-     <i className="fas fa-shopping-bag">
-       <span className="ml-2 badge badge-light">{count}</span>
-     </i>
-   </form>
-    </nav>
-     
-   </>
+        <form className="form-inline cart-badge text-center">
+          <i className="fas fa-shopping-bag">
+            <span className="ml-2 badge badge-light">{count}</span>
+          </i>
+        </form>
+      </nav>
+    </>
   );
 }

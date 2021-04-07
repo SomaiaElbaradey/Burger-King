@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 
 const Loading = () => {
+  
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +21,6 @@ const Loading = () => {
           color="#f3cc62"
           height={100}
           width={100}
-          // timeout={5000}
         />
       ) : (
         <h3 style={{ color: "#f37370" }}>Unknown Error in Loading data..</h3>
