@@ -69,7 +69,7 @@ const Menu = () => {
 
   return (
     <div style={{ backgroundColor: "#0d0c0a" }}>
-      <Navbar count={count} searching={searching} />
+      <Navbar count={count} searching={searching} products={allProducts}/>
       <div className="row container">
         {/* <Filter
               types={this.props.types}
@@ -102,7 +102,6 @@ const Menu = () => {
       </div>
       <div className="text-center">
         <Pagination
-          //  defaultPage={1} siblingCount={0} boundaryCount={2}
           variant="outlined"
           count={Math.ceil(allProducts.length / postsPerPage)}
           onChange={(event, page) => {

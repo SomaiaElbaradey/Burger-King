@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+import Cart from "./cart/cart";
 import "./styles.css";
 
-export default function Navbar({ searching, count }) {
-  
+export default function Navbar({ searching, count, products }) {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -65,9 +65,10 @@ export default function Navbar({ searching, count }) {
         </div>
 
         <form className="form-inline cart-badge text-center">
-          <i className="fas fa-shopping-bag">
-            <span className="ml-2 badge badge-light">{count}</span>
-          </i>
+          <Cart count={count} products={products}/>
+          {/* <i className="fas fa-shopping-bag"> */}
+          {/* <span className="ml-2 badge badge-light">{count}</span> */}
+          {/* </i> */}
         </form>
       </nav>
     </>
