@@ -3,14 +3,14 @@ import axios from "axios";
 import { Pagination } from "@material-ui/lab";
 
 import { withStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
+import { Button, Dialog, Typography, IconButton } from "@material-ui/core";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-import Typography from "@material-ui/core/Typography";
+
+import "./cartStyle.css";
+import Loading from "../loading";
 
 export default function Cart({ count, products }) {
   const [open, setOpen] = React.useState(false);
@@ -24,14 +24,13 @@ export default function Cart({ count, products }) {
 
   const styles = (theme) => ({
     root: {
-      margin: 0,
       padding: theme.spacing(2),
     },
     closeButton: {
       position: "absolute",
       right: theme.spacing(1),
       top: theme.spacing(1),
-      color: theme.palette.grey[500],
+      color: theme.palette.grey[200],
     },
   });
 
@@ -55,7 +54,7 @@ export default function Cart({ count, products }) {
 
   const DialogContent = withStyles((theme) => ({
     root: {
-      padding: theme.spacing(2),
+      padding: theme.spacing(4),
     },
   }))(MuiDialogContent);
 
@@ -69,6 +68,7 @@ export default function Cart({ count, products }) {
   const [isLoading, setIsLoading] = useState(false);
   const [inCartProducts, setInCartProducts] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [inCart, setInCart] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(3);
 
@@ -93,13 +93,43 @@ export default function Cart({ count, products }) {
     await setPosts(inCartProducts.slice(indexOfFirstPost, indexOfLastPost));
   };
 
+  const onDecrement = async function (product) {
+    console.log("onDecrement");
+    setInCart(false);
+    if (product.count != 1) {
+      await axios.patch(`http://localhost:8000/products/${product.id}`, {
+        count: product.count - 1,
+      });
+      setInCart(true);
+    }
+  };
+
+  const onIncrement = async function (product) {
+    console.log("onIncrement");
+    setInCart(false);
+    await axios.patch(`http://localhost:8000/products/${product.id}`, {
+      count: product.count + 1,
+    });
+    setInCart(true);
+  };
+
+  const onDelete = async function (product) {
+    console.log("onDelete", product);
+    setInCart(false);
+    await axios.patch(`http://localhost:8000/products/${product.id}`, {
+      inCart: false,
+      count: 0,
+    });
+    setInCart(true);
+  };
+
   useEffect(() => {
     paginate();
   }, [currentPage]);
 
   useEffect(() => {
     getInCart();
-  }, []);
+  }, [inCart]);
 
   return (
     <div>
@@ -117,52 +147,57 @@ export default function Cart({ count, products }) {
         </i>
       </Button>
       <Dialog
+        scroll="body"
+        PaperProps={{
+          style: {
+            backgroundColor: "#0d0c0a",
+            color: "white",
+            font: "bebe, 'Open Sans', 'Helvetica Neue', sans-serif",
+            border: "1px #f4b325 solid",
+            width: "100%",
+          },
+        }}
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Cart
+          Your Cart
         </DialogTitle>
         <DialogContent dividers>
-          {posts.map((product) => (
-            <div>
-              <span>{product.name}</span>
-              <span
-                className={
-                  count === 0
-                    ? "badge badge-warning m-2"
-                    : "badge badge-primary m-2"
-                }
-              >
-                {count}
-              </span>
-              <button
-                // onClick={() => this.props.onIncrement(this.props.product)}
-                className="btn btn-primary btn-sm m-2"
-              >
-                +
-              </button>
-              <button
-                // onClick={() => this.props.onDelete(this.props.product)}
-                className="btn btn-danger btn-sm m-2"
-              >
-                <i className="fas fa-trash"></i>
-              </button>
-            </div>
-            // <Product
-            //   key={prdct.id}
-            //   product={prdct}
-            //   onDelete={this.props.onDelete}
-            //   onIncrement={this.props.onIncrement}
-            // />
-          ))}
+          {!isLoading ? (
+            posts.map((product) => (
+              <div className="card d-flex flex-row text-start">
+                <div>
+                  <img width="40" className="m-2" src={product.image} />
+                  <div className="container d-inline cart-control">
+                    <button
+                      className="mr-3 ml-3"
+                      onClick={() => onDecrement(product)}
+                    >
+                      -
+                    </button>
+                    <span className="mr-3">{product.count}</span>
 
-          {/* <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </Typography> */}
+                    <button
+                      className="mr-3"
+                      onClick={() => onIncrement(product)}
+                    >
+                      +
+                    </button>
+                    <button className="mr-3" onClick={() => onDelete(product)}>
+                      <i className="fas fa-trash"></i>
+                    </button>
+                  </div>
+                  <span>{product.name}</span>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div>
+              <Loading />
+            </div>
+          )}
         </DialogContent>
         <div className="text-center">
           <Pagination

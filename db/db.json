@@ -26,9 +26,9 @@
       "id": 1,
       "type": 1,
       "name": "Classic Burger",
-      "count": 1,
+      "count": 0,
       "price": 12.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/dMqyTsr/1.png"
     },
     {
@@ -44,25 +44,25 @@
       "id": 3,
       "type": 1,
       "name": "BBQ Burger",
-      "count": 1,
+      "count": 0,
       "price": 11.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/vLc3kPn/4.png"
     },
     {
       "id": 4,
       "type": 1,
       "name": "Double Burger",
-      "count": 1,
+      "count": 0,
       "price": 20.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/85b06sh/3.png"
     },
     {
       "id": 5,
       "type": 1,
       "name": "Bacon Burger",
-      "count": 1,
+      "count": 3,
       "price": 19.99,
       "inCart": true,
       "image": "https://freepngimg.com/thumb/burger/6-2-burger-png-image.png"
@@ -71,9 +71,9 @@
       "id": 6,
       "type": 1,
       "name": "Double Whopper",
-      "count": 1,
+      "count": 0,
       "price": 15.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/VW98756/8.png"
     },
     {

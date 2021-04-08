@@ -35,3 +35,28 @@
   margin: 0 auto!important;
   padding-bottom: 50px!important;
 }
+
+.card {
+  background-color: #0d0c0a!important;
+  width: 100%!important;
+  text-align: center;
+  font: bebe!important;
+}
+
+*{
+  font: bebe!important;
+}
+
+button{
+  background-color:rgba(0, 255, 255, 0);
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.829);
+}
+
+.cart-control{
+  background-color: #292928ce;
+  padding: 3px 0px!important;
+  border-radius: 5px;
+  margin: 10px!important;
+}
