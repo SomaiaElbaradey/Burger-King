@@ -9,12 +9,13 @@ import Loading from "../loading";
 import CartIcon from "../cart/carticon";
 
 const Menu = () => {
-
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [postsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(1);
   const [allProducts, setAllProducts] = useState([]);
+  const [refetch, setrefetch] = useState(false);
+  const [oldProd, setoldProd] = useState([]);
 
   const filteredProducts = allProducts.filter((p) => p.inCart === true);
   const count = filteredProducts.length;
@@ -53,32 +54,36 @@ const Menu = () => {
 
   useEffect(() => {
     getPosts();
-  }, []);
+  }, [refetch]);
 
   const searching = async function (item) {
-    // if (item) {
-      // await refetchProdcts();
-      // let products = [...allProducts];
-      // products = products.filter((product) => {
-      //   return product.name.toLocaleLowerCase().includes(item);
-      // });
-      // setAllProducts(products)
-      // let indexOfLastPost = 1 * postsPerPage;
-      // let indexOfFirstPost = indexOfLastPost - postsPerPage;
-      // setPosts(products.slice(indexOfFirstPost, indexOfLastPost));
-    // }
+    setIsLoading(true);
+    await setoldProd(allProducts);
+    let products = [...oldProd];
+    products = products.filter((product) => product.name.toLocaleLowerCase().includes(item));
+    await setAllProducts(products);
+    let indexOfLastPost = 1 * postsPerPage;
+    let indexOfFirstPost = indexOfLastPost - postsPerPage;
+    await setPosts(products.slice(indexOfFirstPost, indexOfLastPost));
+    setIsLoading(false);
   };
 
   return (
     <div style={{ backgroundColor: "#0d0c0a" }}>
-      <Navbar count={count} searching={searching} getPosts={refetchProdcts}/>
-      <div className="row container">
-        {/* <Filter
-              types={this.props.types}
-              activeFilter={this.props.activeFilter}
-              onActiveFilterChange={this.props.onActiveFilterChange}
-            /> */}
-      </div>
+      <Navbar
+        count={count}
+        searching={searching}
+        getPosts={refetchProdcts}
+        allProducts={allProducts}
+        setAllProducts={setAllProducts}
+        setPosts={setPosts}
+        postsPerPage={postsPerPage}
+        refetchPosts={setrefetch}
+        refetched={refetch}
+        setIsLoading={setIsLoading}
+      />
+
+      <div className="row container"></div>
       <div className="container cards">
         <div className="row d-flex justify-content-center">
           {!isLoading ? (
