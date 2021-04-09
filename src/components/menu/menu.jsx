@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Pagination } from "@material-ui/lab";
-import { makeStyles } from "@material-ui/styles";
 
+import { Pagination } from "@material-ui/lab";
 import "./menuStyle.css";
 
 import Navbar from "../navbar";
 import Loading from "../loading";
 import CartIcon from "../cart/carticon";
-import Cart from "../cart/cart";
 
 const Menu = () => {
+
   const [posts, setPosts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [postsPerPage, setPostsPerPage] = useState(3);
+  const [postsPerPage] = useState(3);
   const [currentPage, setCurrentPage] = useState(1);
   const [allProducts, setAllProducts] = useState([]);
 
-  const filteredProducts = allProducts.filter((p) => p.inCart == true);
+  const filteredProducts = allProducts.filter((p) => p.inCart === true);
   const count = filteredProducts.length;
 
   const getPosts = async function () {
@@ -43,13 +42,12 @@ const Menu = () => {
       .catch((err) => console.log(err, "err"));
   };
 
-  const paginate = async function () {
-    let indexOfLastPost = currentPage * postsPerPage;
-    let indexOfFirstPost = indexOfLastPost - postsPerPage;
-    await setPosts(allProducts.slice(indexOfFirstPost, indexOfLastPost));
-  };
-
   useEffect(() => {
+    const paginate = async function () {
+      let indexOfLastPost = currentPage * postsPerPage;
+      let indexOfFirstPost = indexOfLastPost - postsPerPage;
+      await setPosts(allProducts.slice(indexOfFirstPost, indexOfLastPost));
+    };
     paginate();
   }, [currentPage]);
 
@@ -59,17 +57,21 @@ const Menu = () => {
 
   const searching = async function (item) {
     // if (item) {
-    //   let products = [...allProducts];
-    //   products = products.filter((product) => {
-    //     return product.name.toLocaleLowerCase().includes(item);
-    //   });
-    //   setPosts(products);
+      // await refetchProdcts();
+      // let products = [...allProducts];
+      // products = products.filter((product) => {
+      //   return product.name.toLocaleLowerCase().includes(item);
+      // });
+      // setAllProducts(products)
+      // let indexOfLastPost = 1 * postsPerPage;
+      // let indexOfFirstPost = indexOfLastPost - postsPerPage;
+      // setPosts(products.slice(indexOfFirstPost, indexOfLastPost));
     // }
   };
 
   return (
     <div style={{ backgroundColor: "#0d0c0a" }}>
-      <Navbar count={count} searching={searching} products={allProducts}/>
+      <Navbar count={count} searching={searching} getPosts={refetchProdcts}/>
       <div className="row container">
         {/* <Filter
               types={this.props.types}
@@ -77,7 +79,6 @@ const Menu = () => {
               onActiveFilterChange={this.props.onActiveFilterChange}
             /> */}
       </div>
-      {/* <Cart /> */}
       <div className="container cards">
         <div className="row d-flex justify-content-center">
           {!isLoading ? (

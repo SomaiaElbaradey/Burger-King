@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Pagination } from "@material-ui/lab";
 
+import { Pagination } from "@material-ui/lab";
 import { withStyles } from "@material-ui/core/styles";
 import { Button, Dialog, Typography, IconButton } from "@material-ui/core";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
@@ -12,16 +12,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import "./cartStyle.css";
 import Loading from "../loading";
 
-export default function Cart({ count, products }) {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
+export default function Cart({ count, getPosts }) {
   const styles = (theme) => ({
     root: {
       padding: theme.spacing(2),
@@ -65,19 +56,30 @@ export default function Cart({ count, products }) {
     },
   }))(MuiDialogActions);
 
+  const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [inCartProducts, setInCartProducts] = useState([]);
   const [posts, setPosts] = useState([]);
   const [inCart, setInCart] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(3);
+  const [postsPerPage] = useState(3);
+
+  const handleClickOpen = async function () {
+    await getInCart();
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    getPosts();
+    setOpen(false);
+  };
 
   const getInCart = async function () {
     setIsLoading(true);
     axios
       .get("http://localhost:8000/products")
       .then((response) => {
-        const filteredProducts = response.data.filter((p) => p.inCart == true);
+        const filteredProducts = response.data.filter((p) => p.inCart === true);
         setInCartProducts(filteredProducts);
         let indexOfLastPost = 1 * postsPerPage;
         let indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -87,16 +89,10 @@ export default function Cart({ count, products }) {
       .catch((err) => console.log(err, "err"));
   };
 
-  const paginate = async function () {
-    let indexOfLastPost = currentPage * postsPerPage;
-    let indexOfFirstPost = indexOfLastPost - postsPerPage;
-    await setPosts(inCartProducts.slice(indexOfFirstPost, indexOfLastPost));
-  };
-
   const onDecrement = async function (product) {
     console.log("onDecrement");
     setInCart(false);
-    if (product.count != 1) {
+    if (product.count !== 1) {
       await axios.patch(`http://localhost:8000/products/${product.id}`, {
         count: product.count - 1,
       });
@@ -116,14 +112,25 @@ export default function Cart({ count, products }) {
   const onDelete = async function (product) {
     console.log("onDelete", product);
     setInCart(false);
-    await axios.patch(`http://localhost:8000/products/${product.id}`, {
-      inCart: false,
-      count: 0,
-    });
-    setInCart(true);
+    if (
+      window.confirm(
+        `Are you sure you want to remove "${product.name}" from your cart?`
+      )
+    ) {
+      await axios.patch(`http://localhost:8000/products/${product.id}`, {
+        inCart: false,
+        count: 0,
+      });
+      setInCart(true);
+    }
   };
 
   useEffect(() => {
+      const paginate = async function () {
+    let indexOfLastPost = currentPage * postsPerPage;
+    let indexOfFirstPost = indexOfLastPost - postsPerPage;
+    await setPosts(inCartProducts.slice(indexOfFirstPost, indexOfLastPost));
+  };
     paginate();
   }, [currentPage]);
 
@@ -172,24 +179,31 @@ export default function Cart({ count, products }) {
                   <img width="40" className="m-2" src={product.image} />
                   <div className="container d-inline cart-control">
                     <button
-                      className="mr-3 ml-3"
+                      className="pr-2 pl-2 right-btn opacity"
                       onClick={() => onDecrement(product)}
                     >
                       -
                     </button>
-                    <span className="mr-3">{product.count}</span>
-
+                    <span
+                      className="pr-2 pl-2 text-font"
+                      style={{ fontSize: "17px" }}
+                    >
+                      {product.count}
+                    </span>
                     <button
-                      className="mr-3"
+                      className="pr-2 pl-2 left-btn opacity"
                       onClick={() => onIncrement(product)}
                     >
                       +
                     </button>
-                    <button className="mr-3" onClick={() => onDelete(product)}>
-                      <i className="fas fa-trash"></i>
-                    </button>
                   </div>
-                  <span>{product.name}</span>
+                  <button
+                    className="pr-3 pl-2"
+                    onClick={() => onDelete(product)}
+                  >
+                    <i className="fas fa-trash opacity"></i>
+                  </button>
+                  <p className="text-font">{product.name}</p>
                 </div>
               </div>
             ))
@@ -209,8 +223,12 @@ export default function Cart({ count, products }) {
             }}
           />
         </div>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
+        <DialogActions className="text-center">
+          <Button
+            style={{ fontSize: "19px" }}
+            className="cart-btn"
+            onClick={handleClose}
+          >
             Save changes
           </Button>
         </DialogActions>

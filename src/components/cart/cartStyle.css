@@ -1,20 +1,25 @@
 .fas {
-  color: rgba(255, 255, 255, 0.904);
+  color: #f8f8f7dc;
+}
+
+.fa-sort, .fa-trash{
+  color: #f5a700;
 }
 
 .cart-btn {
+  color: rgba(255, 255, 255, 0.89)!important;
   border: none;
   border-radius: 25px;
   background: linear-gradient(to bottom right, #f5b942, #f8951c);
   padding: 10px;
   width: 150px;
   height: 45px;
-  font-family: bebe;
+  font-family: bebe!important;
   font-size: 19px;
 }
 
 .cart-btn:hover {
-  transition: opacity 2s;
+  transition: opacity 0.6s;
   transition-timing-function: ease-in-out;
   opacity: 0.9;
   background: linear-gradient(to bottom right, #f8951c, #f5b942);
@@ -43,10 +48,6 @@
   font: bebe!important;
 }
 
-*{
-  font: bebe!important;
-}
-
 button{
   background-color:rgba(0, 255, 255, 0);
   border: none;
@@ -59,4 +60,24 @@ button{
   padding: 3px 0px!important;
   border-radius: 5px;
   margin: 10px!important;
+}
+
+.right-btn{
+  border-right: 2px solid rgba(255, 255, 255, 0.336);
+}
+
+.left-btn{
+  border-left: 2px solid rgba(255, 255, 255, 0.336);
+}
+
+.text-font{
+  font: bebe!important;
+  display: inline;
+  font-size: 20px;
+}
+
+.opacity:hover{
+  transition: opacity 0.1s;
+  transition-timing-function: ease-in;
+  opacity: 0.6;
 }

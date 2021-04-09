@@ -9,13 +9,13 @@ const Pagination = ({ onActivePageChange, count, pageSize, activePage }) => {
   
   return (
     <nav aria-label="Page navigation example">
-      <ul class="pagination">
+      <ul className="pagination">
         {pagesArray.map((page) => (
           <li
             onClick={() => onActivePageChange(page)}
-            class={page == activePage ? "page-item active" : "page-item"}
+            className={page == activePage ? "page-item active" : "page-item"}
           >
-            <a class="page-link">{page}</a>
+            <a className="page-link">{page}</a>
           </li>
         ))}
       </ul>

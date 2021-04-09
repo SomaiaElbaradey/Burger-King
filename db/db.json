@@ -26,9 +26,9 @@
       "id": 1,
       "type": 1,
       "name": "Classic Burger",
-      "count": 0,
+      "count": 1,
       "price": 12.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/dMqyTsr/1.png"
     },
     {
@@ -44,25 +44,25 @@
       "id": 3,
       "type": 1,
       "name": "BBQ Burger",
-      "count": 0,
+      "count": 2,
       "price": 11.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/vLc3kPn/4.png"
     },
     {
       "id": 4,
       "type": 1,
       "name": "Double Burger",
-      "count": 0,
+      "count": 1,
       "price": 20.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/85b06sh/3.png"
     },
     {
       "id": 5,
       "type": 1,
       "name": "Bacon Burger",
-      "count": 3,
+      "count": 1,
       "price": 19.99,
       "inCart": true,
       "image": "https://freepngimg.com/thumb/burger/6-2-burger-png-image.png"
@@ -71,9 +71,9 @@
       "id": 6,
       "type": 1,
       "name": "Double Whopper",
-      "count": 0,
+      "count": 1,
       "price": 15.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/VW98756/8.png"
     },
     {
@@ -107,27 +107,27 @@
       "id": 10,
       "type": 3,
       "name": "Cola",
-      "count": 1,
+      "count": 0,
       "price": 5.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/jkxHZdX/5.png"
     },
     {
       "id": 11,
       "type": 3,
       "name": "Apple",
-      "count": 1,
+      "count": 0,
       "price": 7.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/jW7xGJt/12.png"
     },
     {
       "id": 12,
       "type": 3,
       "name": "Orange",
-      "count": 1,
+      "count": 0,
       "price": 7.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/0V10w5V/14.png"
     },
     {
@@ -170,18 +170,18 @@
       "id": 17,
       "type": 2,
       "name": "Twister Fries",
-      "count": 1,
+      "count": 0,
       "price": 5.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/NNtL9hy/16.png"
     },
     {
       "id": 18,
       "type": 2,
       "name": "Large Fries",
-      "count": 1,
+      "count": 0,
       "price": 9.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/BsjGLmP/20.png"
     }
   ]

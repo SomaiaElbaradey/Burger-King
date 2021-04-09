@@ -1,18 +1,23 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import axios from "axios";
 
-import Menu from './components/menu/menu.jsx';
-import Navbar from './components/navbar.jsx';
-import Header from './components/header';
+import Menu from "./components/menu/menu.jsx";
+import Header from "./components/header";
+import Aboout from "./components/about";
+import Error from "./components/error.jsx";
 
 class App extends Component {
-
   render() {
     return (
       <>
-      <Header/>
-      <Menu/>
+        <Header />
+        <Switch>
+          <Route exact path="/menu" component={Menu} />
+          <Route exact path="/about" component={Aboout} />
+          <Route exact path="/" component={Menu} />
+          <Route path="/error" component={Error} />
+          <Redirect to="/error" />
+        </Switch>
       </>
     );
   }

@@ -1,13 +1,14 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+
 import Cart from "./cart/cart";
 import "./styles.css";
 
-export default function Navbar({ searching, count, products }) {
+export default function Navbar({ searching, count, getPosts }) {
+
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
-
   const [item, setItem] = useState("");
-
+  
   const navStyle = {
     backgroundColor: "#0d0c0a",
     color: "white",
@@ -19,6 +20,8 @@ export default function Navbar({ searching, count, products }) {
     color: "black",
     fontFamily: "bebe",
   };
+
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
   let handleSearch = (e) => {
     setItem(e.target.value);
@@ -32,7 +35,7 @@ export default function Navbar({ searching, count, products }) {
         style={navStyle}
         className="navbar navbar-expand-lg justify-content-between fixed-top"
       >
-        <a className="navbar-brand promotion">Promotions</a>
+        <NavLink className="navbar-brand promotion" to="/">Promotions</NavLink>
         <button
           style={btnStyle}
           className="custom-toggler navbar-toggler"
@@ -49,9 +52,11 @@ export default function Navbar({ searching, count, products }) {
           className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
           id="navbarsExample09"
         >
-          <a className="nav-link">Menu</a>
+          <i style={{ cursor: "pointer" }} className="fas fa-sort ml-3"></i>
+          <NavLink className="nav-link" to="/menu">Menu</NavLink>
           <a className="nav-link">Snacks</a>
           <a className="nav-link">Drinks</a>
+          <NavLink className="nav-link" to="/about">About</NavLink>
           <a>
             <input
               className="search"
@@ -65,10 +70,7 @@ export default function Navbar({ searching, count, products }) {
         </div>
 
         <form className="form-inline cart-badge text-center">
-          <Cart count={count} products={products}/>
-          {/* <i className="fas fa-shopping-bag"> */}
-          {/* <span className="ml-2 badge badge-light">{count}</span> */}
-          {/* </i> */}
+          <Cart count={count} getPosts={getPosts}/>
         </form>
       </nav>
     </>
