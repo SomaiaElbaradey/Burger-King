@@ -26,7 +26,7 @@
       "id": 1,
       "type": 1,
       "name": "Classic Burger",
-      "count": 1,
+      "count": 6,
       "price": 12.99,
       "inCart": true,
       "image": "https://i.ibb.co/dMqyTsr/1.png"
@@ -35,16 +35,16 @@
       "id": 2,
       "type": 1,
       "name": "Chicken Burger",
-      "count": 0,
+      "count": 3,
       "price": 9.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/Smq1NSY/2.png"
     },
     {
       "id": 3,
       "type": 1,
       "name": "BBQ Burger",
-      "count": 4,
+      "count": 6,
       "price": 11.99,
       "inCart": true,
       "image": "https://i.ibb.co/vLc3kPn/4.png"
@@ -98,7 +98,7 @@
       "id": 9,
       "type": 1,
       "name": "Chicken Tower",
-      "count": 1,
+      "count": 2,
       "price": 19.99,
       "inCart": true,
       "image": "https://i.ibb.co/PGdcrnW/11.png"

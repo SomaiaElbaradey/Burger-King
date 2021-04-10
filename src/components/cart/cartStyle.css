@@ -81,3 +81,7 @@ button{
   transition-timing-function: ease-in;
   opacity: 0.6;
 }
+
+.allElem{
+  height: 17em;
+}

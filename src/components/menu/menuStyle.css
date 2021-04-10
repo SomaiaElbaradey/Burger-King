@@ -38,7 +38,7 @@
 }
 
 .cards .card:hover {
-  border: 3px #f4b325 solid;
+  outline: 3px solid #f4b325;
 }
 
 .cards .card:hover .card-icon-div {

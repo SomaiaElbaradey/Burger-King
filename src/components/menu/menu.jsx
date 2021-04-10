@@ -20,13 +20,16 @@ const Menu = () => {
   const filteredProducts = allProducts.filter((p) => p.inCart === true);
   const count = filteredProducts.length;
 
+  let defaultSelectedPage = false;
+
   const getPosts = async function () {
     setIsLoading(true);
     axios
       .get("http://localhost:8000/products")
       .then((response) => {
+        defaultSelectedPage = true;
         setAllProducts(response.data);
-        let indexOfLastPost = 1 * postsPerPage;
+        let indexOfLastPost = currentPage * postsPerPage;
         let indexOfFirstPost = indexOfLastPost - postsPerPage;
         setPosts(response.data.slice(indexOfFirstPost, indexOfLastPost));
         setIsLoading(false);
@@ -45,6 +48,7 @@ const Menu = () => {
 
   useEffect(() => {
     const paginate = async function () {
+      defaultSelectedPage = false;
       let indexOfLastPost = currentPage * postsPerPage;
       let indexOfFirstPost = indexOfLastPost - postsPerPage;
       await setPosts(allProducts.slice(indexOfFirstPost, indexOfLastPost));
@@ -60,7 +64,9 @@ const Menu = () => {
     setIsLoading(true);
     await setoldProd(allProducts);
     let products = [...oldProd];
-    products = products.filter((product) => product.name.toLocaleLowerCase().includes(item));
+    products = products.filter((product) =>
+      product.name.toLocaleLowerCase().includes(item)
+    );
     await setAllProducts(products);
     let indexOfLastPost = 1 * postsPerPage;
     let indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -111,7 +117,7 @@ const Menu = () => {
           variant="outlined"
           count={Math.ceil(allProducts.length / postsPerPage)}
           onChange={(event, page) => {
-            setCurrentPage(page);
+            {defaultSelectedPage?setCurrentPage(1) : setCurrentPage(page)}
           }}
         />
       </div>

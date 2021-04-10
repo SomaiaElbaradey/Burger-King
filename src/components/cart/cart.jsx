@@ -126,10 +126,12 @@ export default function Cart({ count, getPosts }) {
   };
 
   useEffect(() => {
-      const paginate = async function () {
+    let isMounted = true;
+    const paginate = async function () {
     let indexOfLastPost = currentPage * postsPerPage;
     let indexOfFirstPost = indexOfLastPost - postsPerPage;
-    await setPosts(inCartProducts.slice(indexOfFirstPost, indexOfLastPost));
+    if (isMounted) await setPosts(inCartProducts.slice(indexOfFirstPost, indexOfLastPost));
+    return () => { isMounted = false };
   };
     paginate();
   }, [currentPage]);
@@ -171,10 +173,10 @@ export default function Cart({ count, getPosts }) {
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           Your Cart
         </DialogTitle>
-        <DialogContent dividers>
+        <DialogContent dividers className="allElem">
           {!isLoading ? (
             posts.map((product) => (
-              <div className="card d-flex flex-row text-start">
+              <div key={product.id} className="card d-flex flex-row text-start">
                 <div>
                   <img width="40" className="m-2" src={product.image} />
                   <div className="container d-inline cart-control">
