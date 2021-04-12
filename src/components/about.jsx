@@ -9,7 +9,8 @@ const Aboout = () => {
   };
 
   const container = {
-    padding: "100px",
+    padding: "70px",
+    paddingTop: "20px",
   };
 
   const text = {
@@ -27,13 +28,13 @@ const Aboout = () => {
 
   return (
     <div style={{ backgroundColor: "#0d0c0a" }}>
-      <div style={container} className="container row">
-        <div className="col-md-8">
-          <img width="100%" style={cartImg} src={img} />
+      <div className="container row pt-5">
+        <div  style={container} className="col-md-7 text-center">
+          <img width="90%" style={cartImg} src={img} />
         </div>
         <div className="row col text-center">
-          <div style={text} className="col-md pl-5 pt-5">
-            <h1 style={h1}>Reviews</h1>
+          <div style={text} className="col-md pl-2 mt-5 mb-5">
+            <h1 style={h1}>About</h1>
             <p>
               We bring the season’s best mix of organic produce and hand-crafted
               farm products conveniently to your door by growing and partnering

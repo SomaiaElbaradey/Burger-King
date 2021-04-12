@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import Cart from "./cart/cart";
-import Loading from "./loading";
 import "./styles.css";
 
 export default function Navbar({
@@ -21,6 +20,7 @@ export default function Navbar({
   const [item, setItem] = useState("");
   const [isAsc, setIsAsc] = useState(true);
   const [oldProd, setoldProd] = useState([]);
+  const [isFiltered, setisFiltered] = useState(false);
 
   const navStyle = {
     backgroundColor: "#0d0c0a",
@@ -58,13 +58,13 @@ export default function Navbar({
   };
 
   const refetch = () => {
+    setisFiltered(false);
     refetchPosts(!refetched);
   };
 
   useEffect(async function()  {
     let products = [...oldProd];
     products = products.filter((product) => product.type == 2 || product.type == 3);
-    let oldcount = oldProd.length;
     await setAllProducts(products);
     let indexOfLastPost = 1 * postsPerPage;
     let indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -74,30 +74,15 @@ export default function Navbar({
 
   const snackFilter = async function () {
     setIsLoading(true);
+    setisFiltered(true);
     await setoldProd(allProducts);
-  };
-
-  const drinkFilter = async function () {
-    // setIsLoading(true);
-    // await getPosts();
-    // let products = [...allProducts];
-    // products = products.filter((product) => product.type == 3);
-    // await setAllProducts(products);
-    // //???
-    // console.log(allProducts);
-    // console.log(products);
-
-    // let indexOfLastPost = 1 * postsPerPage;
-    // let indexOfFirstPost = indexOfLastPost - postsPerPage;
-    // await setPosts(products.slice(indexOfFirstPost, indexOfLastPost));
-    // setIsLoading(false);
   };
 
   return (
     <>
       <nav
         style={navStyle}
-        className="navbar navbar-expand-lg justify-content-between fixed-top"
+        className="navbar navbar-expand-lg justify-content-between fixed-top text-center"
       >
         <NavLink className="navbar-brand promotion" onClick={refetch} to="/">
           Promotions
@@ -130,13 +115,10 @@ export default function Navbar({
           <a className="nav-link" onClick={snackFilter}>
             Snacks
           </a>
-          {/* <a className="nav-link" onClick={drinkFilter}>
-            Drinks
-          </a> */}
           <NavLink className="nav-link" to="/about">
             About
           </NavLink>
-          <a>
+          {/* <a>
             <input
               className="search"
               type="search"
@@ -145,11 +127,11 @@ export default function Navbar({
               value={item}
               onChange={handleSearch}
             />
-          </a>
+          </a> */}
         </div>
 
         <form className="form-inline cart-badge text-center">
-          <Cart count={count} getPosts={getPosts} />
+          {!isFiltered?(<Cart count={count} getPosts={getPosts} />):(<></>)}
         </form>
       </nav>
     </>

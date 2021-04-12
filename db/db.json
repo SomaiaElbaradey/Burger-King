@@ -35,7 +35,7 @@
       "id": 2,
       "type": 1,
       "name": "Chicken Burger",
-      "count": 3,
+      "count": 4,
       "price": 9.99,
       "inCart": true,
       "image": "https://i.ibb.co/Smq1NSY/2.png"
@@ -44,9 +44,9 @@
       "id": 3,
       "type": 1,
       "name": "BBQ Burger",
-      "count": 6,
+      "count": 0,
       "price": 11.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://i.ibb.co/vLc3kPn/4.png"
     },
     {
