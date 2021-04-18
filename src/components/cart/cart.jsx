@@ -77,7 +77,7 @@ export default function Cart({ count, getPosts }) {
   const getInCart = async function () {
     setIsLoading(true);
     axios
-      .get("http://localhost:8000/products")
+      .get("https://burgerking-api.herokuapp.com/products")
       .then((response) => {
         const filteredProducts = response.data.filter((p) => p.inCart === true);
         setInCartProducts(filteredProducts);
@@ -93,7 +93,7 @@ export default function Cart({ count, getPosts }) {
     console.log("onDecrement");
     setInCart(false);
     if (product.count !== 1) {
-      await axios.patch(`http://localhost:8000/products/${product.id}`, {
+      await axios.patch(`https://burgerking-api.herokuapp.com/products/${product.id}`, {
         count: product.count - 1,
       });
       setInCart(true);
@@ -103,7 +103,7 @@ export default function Cart({ count, getPosts }) {
   const onIncrement = async function (product) {
     console.log("onIncrement");
     setInCart(false);
-    await axios.patch(`http://localhost:8000/products/${product.id}`, {
+    await axios.patch(`https://burgerking-api.herokuapp.com/products/${product.id}`, {
       count: product.count + 1,
     });
     setInCart(true);
@@ -117,7 +117,7 @@ export default function Cart({ count, getPosts }) {
         `Are you sure you want to remove "${product.name}" from your cart?`
       )
     ) {
-      await axios.patch(`http://localhost:8000/products/${product.id}`, {
+      await axios.patch(`https://burgerking-api.herokuapp.com/products/${product.id}`, {
         inCart: false,
         count: 0,
       });

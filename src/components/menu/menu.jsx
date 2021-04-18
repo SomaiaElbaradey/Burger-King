@@ -25,7 +25,7 @@ const Menu = () => {
   const getPosts = async function () {
     setIsLoading(true);
     axios
-      .get("http://localhost:8000/products")
+      .get("https://burgerking-api.herokuapp.com/products")
       .then((response) => {
         defaultSelectedPage = true;
         setAllProducts(response.data);
@@ -39,7 +39,7 @@ const Menu = () => {
 
   const refetchProdcts = async function () {
     axios
-      .get("http://localhost:8000/products")
+      .get("https://burgerking-api.herokuapp.com/products")
       .then((response) => {
         setAllProducts(response.data);
       })

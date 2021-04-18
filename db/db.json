@@ -26,7 +26,7 @@
       "id": 1,
       "type": 1,
       "name": "Classic Burger",
-      "count": 6,
+      "count": 1,
       "price": 12.99,
       "inCart": true,
       "image": "https://i.ibb.co/dMqyTsr/1.png"
@@ -44,9 +44,9 @@
       "id": 3,
       "type": 1,
       "name": "BBQ Burger",
-      "count": 0,
+      "count": 3,
       "price": 11.99,
-      "inCart": false,
+      "inCart": true,
       "image": "https://i.ibb.co/vLc3kPn/4.png"
     },
     {
@@ -62,9 +62,9 @@
       "id": 5,
       "type": 1,
       "name": "Bacon Burger",
-      "count": 1,
+      "count": 0,
       "price": 19.99,
-      "inCart": true,
+      "inCart": false,
       "image": "https://freepngimg.com/thumb/burger/6-2-burger-png-image.png"
     },
     {

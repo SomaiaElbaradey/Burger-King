@@ -8,7 +8,7 @@ import "./cartStyle.css";
 const CartIcon = ({ product, getPosts }) => {
   const editPosts = async function (product) {
     if (!product.inCart) {
-      await axios.patch(`http://localhost:8000/products/${product.id}`, {
+      await axios.patch(`https://burgerking-api.herokuapp.com/products/${product.id}`, {
         inCart: true,
         count: 1,
       });
