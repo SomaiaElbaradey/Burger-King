@@ -115,9 +115,9 @@ export default function Navbar({
           <a className="nav-link" onClick={snackFilter}>
             Snacks
           </a>
-          <NavLink className="nav-link" to="/about">
+          {/* <NavLink className="nav-link" to="/about">
             About
-          </NavLink>
+          </NavLink> */}
           {/* <a>
             <input
               className="search"
