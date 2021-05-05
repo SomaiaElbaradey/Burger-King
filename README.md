@@ -7,9 +7,7 @@ Simple single-page web application for hamburger fast food restaurant using Reac
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <ul>
         <a href="#app-functionality">App Functionality</a>
-      </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
