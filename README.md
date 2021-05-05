@@ -8,7 +8,7 @@ Simple single-page web application for hamburger fast food restaurant using Reac
   <ol>
     <li>
       <ul>
-        <li><a href="#app-functionality">App Functionality</a></li>
+        <a href="#app-functionality">App Functionality</a>
       </ul>
     </li>
     <li>
