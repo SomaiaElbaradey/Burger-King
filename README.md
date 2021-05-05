@@ -40,7 +40,7 @@ Burger King provides many functionalities to the app guest:
 </ul>
  
  ## Getting Started
-I'm using custom api: <a href="https://burgerking-api.herokuapp.com/"></a>
+I'm using custom api: <a href="https://burgerking-api.herokuapp.com/">API</a>
 
 ## Prerequisites
 Before you start, make sure you have <a href="https://nodejs.org/en/download/">NodeJS</a> installed.
